@@ -17,10 +17,12 @@ class UserLogin(Resource):
         user = UserModel.get_user_by_username(requested_data["username"])
         if user:
             if requested_data["password"] == user["password"]:
-                return {"msg": "Logging successful"}, 200
+                return {"msg": "Login successful"}, 200
             else:
                 return {"msg": "Bad username or password"}, 400
         return {"msg": "Bad username or password"}, 400
 
 
-
+class UserProfile(Resource):
+    def get(self, username):
+        pass
