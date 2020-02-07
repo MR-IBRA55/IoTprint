@@ -1,18 +1,14 @@
+from typing import Dict
+
 from app import mongo
-from flask import jsonify
 
 
 class UserModel:
 
     @classmethod
-    def register_user(cls, username, password, email):
-        data = {"username": username,
-                "password": password,
-                "email": email
-                }
+    def register_user(cls, data: Dict) -> None:
         mongo.db.users.insert_one(data)
 
     @classmethod
-    def get_user_by_username(cls, username):
-        users = mongo.users
-        return users.find_one({"username": username})
+    def get_user_by_username(cls, username: str) -> Dict:
+        return mongo.db.users.find_one({"username": username})

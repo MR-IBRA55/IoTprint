@@ -10,6 +10,7 @@ app.config.from_object(Configs)
 api = Api(app)
 mongo = PyMongo(app)
 
-from app.resources.user_resource import UserRegister
+from app.resources.user_resource import UserRegister, UserLogin
 
 api.add_resource(UserRegister, '/register')
+api.add_resource(UserLogin, '/login')

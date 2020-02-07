@@ -1,15 +1,26 @@
 from flask_restful import Resource
-from flask import jsonify, request
+from flask import request
 
 from app.models.user_model import UserModel
 
 
 class UserRegister(Resource):
     def post(self):
-        postData = request.get_json()
-        username = postData["username"]
-        password = postData["password"]
-        email = postData["email"]
-        UserModel.register_user(username, password, email)
+        requested_data = request.get_json()
+        UserModel.register_user(requested_data)
+        return {"msg": "Registration successful"}, 200
 
-        return jsonify({"message": "Hello, World!"})
+
+class UserLogin(Resource):
+    def post(self):
+        requested_data = request.get_json()
+        user = UserModel.get_user_by_username(requested_data["username"])
+        if user:
+            if requested_data["password"] == user["password"]:
+                return {"msg": "Logging successful"}, 200
+            else:
+                return {"msg": "Bad username or password"}, 400
+        return {"msg": "Bad username or password"}, 400
+
+
+
