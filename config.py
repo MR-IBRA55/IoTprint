@@ -10,3 +10,4 @@ class Configs(object):
     SECRET_KEY = os.getenv("SECRET_KEY")
     MONGO_URI = os.getenv("MONGO_URI")
     PROPAGATE_EXCEPTIONS = True
+    UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")

@@ -8,7 +8,7 @@ class UserRegister(Resource):
     def post(self):
         requested_data = request.get_json()
         UserModel.register_user(requested_data)
-        return {"msg": "Registration successful"}, 200
+        return {"msg": "Registration successful"}, 201
 
 
 class UserLogin(Resource):
