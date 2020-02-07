@@ -4,7 +4,6 @@ from app import mongo
 
 
 class UserModel:
-
     @classmethod
     def register_user(cls, data: Dict) -> None:
         mongo.db.users.insert_one(data)

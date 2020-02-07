@@ -4,7 +4,6 @@ from app import mongo
 
 
 class SketchModel:
-
     @classmethod
     def add_sketch(cls, data: Dict) -> None:
         mongo.db.sketches.insert_one(data)
