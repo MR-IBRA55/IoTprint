@@ -10,7 +10,7 @@ class FileHandler:
     @classmethod
     def allowed_file(cls, filename: str) -> bool:
         return (
-            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+                "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
         )
 
     @classmethod
