@@ -6,6 +6,7 @@ from config import Configs
 
 
 app = Flask(__name__)
+app.debug = True
 app.config.from_object(Configs)
 api = Api(app)
 mongo = PyMongo(app)
