@@ -1,7 +1,4 @@
-from typing import Dict
 from mongoengine import Document, StringField, DateField
-
-from app import mongo
 
 
 class SketchModel(Document):
@@ -10,8 +7,8 @@ class SketchModel(Document):
     date = DateField(required=True)
 
     @classmethod
-    def add_sketch(cls, data: Dict) -> None:
-        mongo.db.sketches.insert_one(data)
+    def add_sketch(cls):
+        pass
 
     @classmethod
     def get_all_sketches(cls):
