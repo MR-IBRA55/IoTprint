@@ -11,10 +11,12 @@ class FileHandler:
     def allowed_file(cls, filename: str) -> bool:
         return (
             "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-        )
+            )
 
     @classmethod
-    def save_file(cls, file) -> str:
-        random_name = secrets.token_hex(16)
-        file.save(os.path.join(Configs.UPLOAD_FOLDER, random_name + ".gcode"))
-        return random_name
+    def random_name_gen(cls) -> str:
+        return secrets.token_hex(16) + ".gcode"
+
+    @classmethod
+    def save_file(cls, file, filename: str) -> None:
+        file.save(os.path.join(Configs.UPLOAD_FOLDER, filename))
