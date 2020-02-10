@@ -12,6 +12,6 @@ class UserSchema(Schema):
 
 class SketchSchema(Schema):
     _id = fields.Str()
-    display_name = fields.Str(required=True, validate=validate.Length(min=3, max=24))
+    display_name = fields.Str(validate=validate.Length(min=3, max=24))
     filename = fields.Str()
     date = fields.DateTime()

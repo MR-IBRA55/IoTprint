@@ -1,5 +1,5 @@
 from bson import ObjectId
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource
 from marshmallow import ValidationError
 
@@ -20,7 +20,7 @@ class UserRegister(Resource):
             UserModel.register_user(**result)
             return {"msg": "Registration successful"}, 201
         except ValidationError as err:
-            return err.messages, 400
+            return jsonify(err.messages, 400)
 
 
 class UserLogin(Resource):

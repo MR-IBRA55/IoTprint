@@ -13,10 +13,13 @@ ma = Marshmallow(app)
 
 
 from app.resources.user_resource import UserRegister, UserLogin, UserProfile
-from app.resources.sketch_resource import SketchUpload
+from app.resources.sketch_resource import SketchUpload, Sketches
 
 api.add_resource(UserRegister, "/api/register")
 api.add_resource(UserLogin, "/api/login")
 api.add_resource(UserProfile, "/api/profile/<string:_id>")
 
 api.add_resource(SketchUpload, "/api/upload")
+api.add_resource(Sketches, "/api/sketches")
+
+api.add_resource(OrderCreate, "/api/order")

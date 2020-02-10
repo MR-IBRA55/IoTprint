@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from bson import ObjectId
 from mongoengine import DateField, Document, ObjectIdField, StringField
@@ -16,8 +17,11 @@ class SketchModel(Document):
         SketchModel(**kwargs).save()
 
     @classmethod
-    def get_all_sketches(cls):
-        pass
+    def get_all_sketches(cls) -> List:
+        sketches = []
+        for sketch in SketchModel.objects():
+            sketches.append(sketch)
+        return sketches
 
     @classmethod
     def get_sketch_by_filename(cls):
