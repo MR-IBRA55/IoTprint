@@ -12,11 +12,11 @@ class UserModel(Document):
     meta = {"collection": "users"}
 
     @classmethod
-    def register_user(cls, **kwargs):
+    def register_user(cls, **kwargs) -> None:
         UserModel(**kwargs).save()
 
     @classmethod
-    def get_user_by_id(cls, _id: ObjectId) -> "UserModel":
+    def get_user_by_id(cls, _id) -> "UserModel":
         for user in UserModel.objects(_id=_id):
             return user
 

@@ -1,5 +1,4 @@
-from bson import ObjectId
-from flask import request, jsonify
+from flask import jsonify, request
 from flask_restful import Resource
 from marshmallow import ValidationError
 
@@ -37,7 +36,7 @@ class UserLogin(Resource):
 
 class UserProfile(Resource):
     def get(self, _id: str):
-        user = UserModel.get_user_by_id(ObjectId(_id))
+        user = UserModel.get_user_by_id(_id)
         if user:
             user_schema = UserSchema(only=("first_name", "last_name", "email", "username"))
             result: dict = user_schema.dump(user)

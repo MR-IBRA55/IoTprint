@@ -39,7 +39,17 @@ class Sketches(Resource):
     def get(self):
         sketches = SketchModel.get_all_sketches()
         if sketches:
-            sketches_schema = SketchSchema(many=True, only=("display_name", "date"))
+            sketches_schema = SketchSchema(many=True, only=("_id", "display_name", "date"))
             result: dict = sketches_schema.dump(sketches)
             return result, 200
         return {"msg": "No sketches found"}, 404
+
+
+class Sketch(Resource):
+    def get(self, _id):
+        sketch = SketchModel.get_sketch_by_id(_id)
+        if sketch:
+            sketches_schema = SketchSchema(only=("_id", "display_name", "date"))
+            result: dict = sketches_schema.dump(sketch)
+            return result, 200
+        return {"msg": "Sketch not found"}, 404

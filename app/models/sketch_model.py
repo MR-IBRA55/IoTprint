@@ -2,14 +2,14 @@ from datetime import datetime
 from typing import List
 
 from bson import ObjectId
-from mongoengine import DateField, Document, ObjectIdField, StringField
+from mongoengine import Document, ObjectIdField, StringField, DateTimeField
 
 
 class SketchModel(Document):
     _id = ObjectIdField(primary_key=True, default=ObjectId)
     display_name = StringField(required=True, max_length=32)
     filename = StringField(required=True)
-    date = DateField(required=True, default=datetime.utcnow)
+    date = DateTimeField(required=True, default=datetime.utcnow)
     meta = {"collection": "sketches"}
 
     @classmethod
@@ -24,5 +24,6 @@ class SketchModel(Document):
         return sketches
 
     @classmethod
-    def get_sketch_by_filename(cls):
-        pass
+    def get_sketch_by_id(cls, _id):
+        for sketch in SketchModel.objects(_id=_id):
+            return sketch
