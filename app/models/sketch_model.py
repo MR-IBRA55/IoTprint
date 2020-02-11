@@ -18,9 +18,7 @@ class SketchModel(Document):
 
     @classmethod
     def get_all_sketches(cls) -> List:
-        sketches = []
-        for sketch in SketchModel.objects():
-            sketches.append(sketch)
+        sketches = SketchModel.objects()
         return sketches
 
     @classmethod

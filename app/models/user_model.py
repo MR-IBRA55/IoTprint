@@ -16,7 +16,7 @@ class UserModel(Document):
         UserModel(**kwargs).save()
 
     @classmethod
-    def get_user_by_id(cls, _id) -> "UserModel":
+    def get_user_by_id(cls, _id: str) -> "UserModel":
         for user in UserModel.objects(_id=_id):
             return user
 

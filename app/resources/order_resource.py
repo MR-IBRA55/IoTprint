@@ -1,3 +1,5 @@
+from typing import List
+
 from flask import request
 from flask_restful import Resource
 
@@ -10,12 +12,14 @@ from app.schemas import OrderSchema
 class OrderCreate(Resource):
     def post(self):
         requested_data = request.get_json()
-        user_id = UserModel.get_user_by_id(requested_data["user_id"])
-        sketch_id = SketchModel.get_sketch_by_id(requested_data["sketch_id"])
-        if user_id and sketch_id:
-            OrderModel.create_order(user_id, sketch_id)
-            return {"msg": "Order created"}, 201
-        return {"msg": "Bad request"}, 400
+        user = UserModel.get_user_by_id(requested_data["user"])
+        if user:
+            sketch = SketchModel.get_sketch_by_id(requested_data["sketch"])
+            if sketch:
+                OrderModel.create_order(user, sketch)
+                return {"msg": "Order created"}, 201
+            return {"msg": "Sketch not found"}, 404
+        return {"msg": "User not found"}, 404
 
 
 class Orders(Resource):
@@ -23,7 +27,7 @@ class Orders(Resource):
         user = UserModel.get_user_by_id(user_id)
         if user:
             schema = OrderSchema(many=True)
-            orders = OrderModel.get_orders_by_user_id(user_id)
+            orders: List[OrderModel] = OrderModel.get_orders_by_user(user)
             result = schema.dump(orders)
             return result, 200
         return {"msg": "Bad request"}, 400

@@ -1,6 +1,5 @@
-from marshmallow import Schema, fields, validate, post_load
-
-from app.models.orders_model import OrderModel
+from flask_marshmallow import Schema
+from marshmallow import fields, validate
 
 
 class UserSchema(Schema):
@@ -20,9 +19,8 @@ class SketchSchema(Schema):
 
 
 class OrderSchema(Schema):
-    _id = fields.Str()
-    user_id = fields.Str(load_only=True)
-    sketch_id = fields.Str(load_only=True)
+    _id = fields.Str(load_only=True)
+    user = fields.Nested(UserSchema, only=("username",))
+    sketch = fields.Nested(SketchSchema, only=("display_name",))
     date = fields.DateTime()
     status = fields.Str()
-

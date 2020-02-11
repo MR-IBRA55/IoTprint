@@ -8,8 +8,8 @@ from config import Configs
 
 app = Flask(__name__)
 app.config.from_object(Configs)
-db = MongoEngine(app)
-ma = Marshmallow(app)
+MongoEngine(app)
+Marshmallow(app)
 
 app.register_blueprint(website_bp)
 app.register_blueprint(api_bp, url_prefix='/api')
