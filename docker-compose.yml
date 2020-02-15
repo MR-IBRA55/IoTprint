@@ -14,10 +14,11 @@ services:
       context: ./server
     volumes:
       - ./server:/usr/app
-    env_file:
-      - ./server/.env
     environment:
+      - SECRET_KEY=171f8a1082a0b343cb8b0b267c8dab12
+      - UPLOAD_FOLDER=sketches
       - MONGO_HOST=mongodb
+      - DB=iotp
 
   client:
     build:
@@ -25,8 +26,8 @@ services:
       context: ./client
     volumes:
       - ./client:/usr/app
-    env_file:
-      - ./client/.env
+    environment:
+      - SECRET_KEY=171f8a1082a0b343cb8b0b267c8dab12
 
   nginx:
     build:

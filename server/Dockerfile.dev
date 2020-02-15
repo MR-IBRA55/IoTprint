@@ -9,6 +9,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 # Add virtuak environments
 ENV FLASK_ENV=development
-ENV FLASK_APP=app
+ENV FLASK_APP=run
 # Tell the image what to do when starts as a container
 CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
