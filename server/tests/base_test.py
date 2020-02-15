@@ -16,8 +16,7 @@ class BaseTest(TestCase):
         # Make sure database exist
         app.config['MONGODB_SETTINGS'] = {
             'db': 'tests',
-            'host': os.getenv("MONGO_HOST"),
-            'port': int(os.getenv("MONGO_PORT")),
+            'host': "127.0.0.1",
             }
         with app.app_context():
             db.init_app(app)

@@ -10,7 +10,10 @@ server/app/__pycache__/
 server/app/libs/__pycache__/
 server/app/models/__pycache__/
 server/app/resources/__pycache__/
+# Pytest
+.pytest_cache
 # venv
+venv
 client/venv
 server/venv
 # .env
