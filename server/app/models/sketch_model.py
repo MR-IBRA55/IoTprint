@@ -13,8 +13,8 @@ class SketchModel(Document):
     meta = {"collection": "sketches"}
 
     @classmethod
-    def add_sketch(cls, **kwargs):
-        SketchModel(**kwargs).save()
+    def add_sketch(cls, **kwargs) -> "SketchModel":
+        return SketchModel(**kwargs).save()
 
     @classmethod
     def get_all_sketches(cls) -> List:

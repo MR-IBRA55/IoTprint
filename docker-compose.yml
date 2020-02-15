@@ -1,0 +1,37 @@
+version: "3"
+services:
+  mongodb:
+    image: 'mongo'
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: 'redis'
+
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      - ./server:/usr/app
+    env_file:
+      - ./server/.env
+    environment:
+      - MONGO_HOST=mongodb
+
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - ./client:/usr/app
+    env_file:
+      - ./client/.env
+
+  nginx:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    restart: always
+    ports:
+      - "80:80"

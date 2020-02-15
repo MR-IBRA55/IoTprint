@@ -1,0 +1,14 @@
+# User an existing docker image as base
+FROM python
+# Specify work dir path inside the container
+WORKDIR /usr/app
+# Copy then Download and install depndancies
+COPY ./requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+# Copy project files inside container workdir directory
+COPY . .
+# Add virtuak environments
+ENV FLASK_ENV=development
+ENV FLASK_APP=app
+# Tell the image what to do when starts as a container
+CMD ["flask", "run", "--host=0.0.0.0", "--port=3000"]
