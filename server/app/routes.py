@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api
 
-api_bp = Blueprint('api', __name__)
+api_bp = Blueprint("api", __name__)
 api = Api(api_bp)
 
 from app.resources.user_resource import UserRegister, UserLogin, UserProfile

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Printing Page{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    {% if name %}
+        <img src="{{ url_for('static', filename='images/{}.png'.format(name)) }}" class="img-thumbnail rounded float-left"
+             alt="">
+    {% endif %}
+
+    <div class="ml-3"><h3>Buttons</h3></div>
+    <form action="/printing/{{ name }}" method="POST">
+        <div class="btn-group-vertical m-5" role="group" aria-label="Button group with nested dropdown">
+        <button type="submit" class="btn btn-primary p-3" name="btn-connect" value="connect">Connect</button>
+        <button type="submit" class="btn btn-info p-3" name="btn-temp">Temperature</button>
+        <button type="submit" class="btn btn-danger p-3" name="btn-print">Print now</button>
+
+        <ul class="list-group mt-3">
+            {% if status == 'online' %}
+                <li class="list-group-item list-group-item-success">Online</li>
+            {% else %}
+                <li class="list-group-item list-group-item-danger">Offline</li>
+            {% endif %}
+            <li class="list-group-item list-group-item-light">None</li>
+            <li class="list-group-item list-group-item-warning">On Hold</li>
+        </ul>
+    </div>
+    </form>
+</div>
+{% endblock content %}

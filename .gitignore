@@ -1,21 +1,6 @@
-# Pycharm
-.idea/
-client/.idea
-server/.idea
-/server/app/sketches
-__pycache__/
-client/__pycache__/
-server/__pycache__/
-server/app/__pycache__/
-server/app/libs/__pycache__/
-server/app/models/__pycache__/
-server/app/resources/__pycache__/
-# Pytest
-.pytest_cache
-# venv
-venv
-client/venv
-server/venv
-# .env
-client/.env
-server/.env
+*.idea/
+*__pycache__/
+*.pytest_cache
+*venv/
+*.env
+!/server/sketches/

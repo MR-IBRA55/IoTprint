@@ -38,7 +38,9 @@ class UserProfile(Resource):
     def get(self, _id: str):
         user = UserModel.get_user_by_id(_id)
         if user:
-            user_schema = UserSchema(only=("first_name", "last_name", "email", "username"))
+            user_schema = UserSchema(
+                only=("first_name", "last_name", "email", "username")
+            )
             result: dict = user_schema.dump(user)
             return result, 200
         return {"msg": "User Not found"}, 404

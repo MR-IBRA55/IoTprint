@@ -2,17 +2,14 @@ from flask import jsonify, request
 from flask_restful import Resource
 from marshmallow import ValidationError
 
-from app.libs.file_handler import FileHandler
 from app.models.sketch_model import SketchModel
 from app.schemas import SketchSchema
+from libs.file_handler import FileHandler
 
 
 class SketchUpload(Resource):
     def upload_and_save_file(self, file, fullname, display_name):
-        requested_data = {
-            "display_name": display_name,
-            "filename": fullname
-            }
+        requested_data = {"display_name": display_name, "filename": fullname}
         sketch_schema = SketchSchema()
         result = sketch_schema.load(requested_data)
         SketchModel.add_sketch(**result)
@@ -39,7 +36,9 @@ class Sketches(Resource):
     def get(self):
         sketches = SketchModel.get_all_sketches()
         if sketches:
-            sketches_schema = SketchSchema(many=True, only=("_id", "display_name", "date"))
+            sketches_schema = SketchSchema(
+                many=True, only=("_id", "display_name", "date")
+                )
             result: dict = sketches_schema.dump(sketches)
             return result, 200
         return {"msg": "No sketches found"}, 404

@@ -7,7 +7,7 @@ COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files inside container workdir directory
 COPY . .
-# Add virtuak environments
+# Add environment variables
 ENV FLASK_ENV=development
 ENV FLASK_APP=run
 # Tell the image what to do when starts as a container

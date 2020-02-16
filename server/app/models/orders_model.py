@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import List
 
 from bson import ObjectId
-from mongoengine import DateTimeField, Document, ObjectIdField, ReferenceField, StringField
+from mongoengine import (DateTimeField, Document, ObjectIdField, ReferenceField, StringField)
 
 from app.models.sketch_model import SketchModel
 from app.models.user_model import UserModel
@@ -13,9 +13,10 @@ class OrderModel(Document):
     user = ReferenceField(UserModel)
     sketch = ReferenceField(SketchModel)
     date = DateTimeField(default=datetime.utcnow)
-    status = StringField(default='standby', choices=('standby', 'printing', 'finished'),
-                         required=True)
-    meta = {"collection": "orders", 'ordering': ['-date']}
+    status = StringField(
+        default="standby", choices=("standby", "printing", "finished"), required=True
+        )
+    meta = {"collection": "orders", "ordering": ["-date"]}
 
     @classmethod
     def create_order(cls, user, sketch) -> None:

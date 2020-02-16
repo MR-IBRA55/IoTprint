@@ -10,6 +10,6 @@ class Configs(object):
     PROPAGATE_EXCEPTIONS = True
     UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")
     MONGODB_SETTINGS = {
-        'db': os.getenv("DB"),
-        'host': os.getenv("MONGO_HOST"),
-        }
+        "db": os.getenv("DB"),
+        "host": os.getenv("MONGO_HOST"),
+    }

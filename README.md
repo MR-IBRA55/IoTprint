@@ -1,5 +1,8 @@
+IoTprint
+=============
 [![Build Status](https://travis-ci.org/Captain-IR/IoTprint.svg?branch=master)](https://travis-ci.org/Captain-IR/IoTprint)
-# IoTprint
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 Bring your 3D printer online and print your files remotely.
 
 ## Getting Started

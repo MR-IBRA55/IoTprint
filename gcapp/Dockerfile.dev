@@ -1,5 +1,5 @@
 # User an existing docker image as base
-FROM python
+FROM python:3.6
 # Specify work dir path inside the container
 WORKDIR /usr/app
 # Copy then Download and install depndancies
@@ -7,8 +7,5 @@ COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files inside container workdir directory
 COPY . .
-# Add environment variables
-ENV FLASK_ENV=development
-ENV FLASK_APP=run
 # Tell the image what to do when starts as a container
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ["python", "app.py"]

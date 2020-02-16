@@ -12,7 +12,7 @@ class FileHandler:
     def allowed_file(cls, filename: str) -> bool:
         return (
             "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-            )
+        )
 
     @classmethod
     def random_name_gen(cls, filename) -> str:

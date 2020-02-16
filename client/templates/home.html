@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+    <h3>Our collection:</h3>
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/pyramid.png') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Testing Pyramid</h5>
+                    <p class="card-text">Click on the below button to go to the printing page</p>
+                    <a href="{{ url_for('printing', name='pyramid') }}" class="btn btn-sm btn-primary">Print It!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/block.png') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Testing Block</h5>
+                    <p class="card-text">Click on the below button to go to the printing page</p>
+                    <a href="{{ url_for('printing', name='block') }}" class="btn btn-sm btn-primary">Print It!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/box.png') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Testing Box</h5>
+                    <p class="card-text">Click on the below button to go to the printing page</p>
+                    <a href="{{ url_for('printing', name='box') }}" class="btn btn-sm btn-primary">Print It!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
