@@ -3,4 +3,4 @@
 *.pytest_cache
 *venv/
 *.env
-!/server/sketches/
+/server/sketches

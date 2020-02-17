@@ -1,5 +1,5 @@
 import os.path
-from pprint import pprint
+import time
 
 from pymongo import MongoClient
 
@@ -13,17 +13,32 @@ class Printer:
         Linux: p = printcore('/dev/ttyUSB0',250000)
         Windows: p = printcore('COM6',250000)
         """
-        self.p = printcore(usb, budrate)
+        self.client = MongoClient(host=os.getenv("MONGO_HOST"))
+        self.db = self.client.iotp
+        # self.p = printcore(usb, budrate)
 
     def grab_file(self) -> str:
         pass
 
-    def print_file(self, filename: str) -> bool:
-        with open(filename, "r") as f:
-            gc_lines = [line.strip() for line in f.readlines()]
-        gcode_list = [gc_lines]
-        gcode = gcoder.LightGCode(gcode_list)
-        return self.p.startprint(gcode)  # this will start a print
+    @classmethod
+    def print_file(cls, file: str):
+        print(f"[+] Printing of {file.split('/')[-1]} in progress...")
+        # with open(file, "r") as f:
+        #     gc_lines = [line.strip() for line in f.readlines()]
+        # gcode_list = [gc_lines]
+        # gcode = gcoder.LightGCode(gcode_list)
+        # return self.p.startprint(gcode)  # this will start a print
+
+    def get_next_order(self) -> str:
+        order = self.db.orders.find_one({"status": "standby"}, {"_id": 0, "sketch": 1})
+        if order:
+            filename = self.db.sketches.find_one({"_id": order["sketch"]}, {"_id": 0, "filename": 1})
+            return filename["filename"]
+        print("No orders found")
+
+    def get_file_path(self, filename):
+        dir_path = "../server/sketches/"
+        return f'{dir_path}' + f'{filename}'
 
     def extruder_temp(self):
         self.p.send_now("M105")  # Interact with the printer immediately
@@ -37,27 +52,19 @@ class Printer:
     def stop_and_disconnect(self):
         self.p.disconnect()  # disconnect and stop running prints
 
-
-# print_runner = Printer('COM6', 250000)
-# print_runner.print_file('filename.gcode')
-
-client = MongoClient(host=os.getenv("MONGO_URI"))
-db = client.iotp
-
-order = db.orders.find_one({"status": "standby"}, {"_id": 0, "sketch": 1})
-filename = db.sketches.find_one({"_id": order["sketch"]})
-pprint(order)
-pprint(filename)
+    def run(self):
+        filename = print_runner.get_next_order()
+        if filename:
+            file_path = print_runner.get_file_path(filename)
+            if os.path.exists(file_path):
+                print_runner.print_file(file_path)
 
 
-file_path = os.path.exists(f'../server/sketches/{filename["filename"]}')
-print(file_path)
-try:
-    f = open(f'../server/sketches/{filename["filename"]}')
-    f.close()
-    print(f'File {filename["filename"]} is accessible')
-except IOError:
-    print('File not found or inaccessible')
-
-# gcodes = [i.strip() for i in open(file)]
-# print(gcodes)
+while True:
+    try:
+        print_runner = Printer('COM6', 250000)
+        print_runner.run()
+        time.sleep(10)
+    except IOError:
+        print('File not found or inaccessible')
+        time.sleep(5)

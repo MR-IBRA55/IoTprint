@@ -29,6 +29,16 @@ services:
     environment:
       - SECRET_KEY=171f8a1082a0b343cb8b0b267c8dab12
 
+  gcapp:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./gcapp
+    volumes:
+      - ./gcapp:/usr/app
+    environment:
+      - MONGO_HOST=mongodb
+    restart: always
+
   nginx:
     build:
       dockerfile: Dockerfile.dev
