@@ -17,28 +17,32 @@ class Printer:
         self.db = self.client.iotp
         # self.p = printcore(usb, budrate)
 
-    def grab_file(self) -> str:
-        pass
-
-    @classmethod
-    def print_file(cls, file: str):
-        print(f"[+] Printing of {file.split('/')[-1]} in progress...")
-        # with open(file, "r") as f:
-        #     gc_lines = [line.strip() for line in f.readlines()]
-        # gcode_list = [gc_lines]
-        # gcode = gcoder.LightGCode(gcode_list)
-        # return self.p.startprint(gcode)  # this will start a print
-
-    def get_next_order(self) -> str:
+    def get_next_order(self) -> [str, bool]:
         order = self.db.orders.find_one({"status": "standby"}, {"_id": 0, "sketch": 1})
         if order:
             filename = self.db.sketches.find_one({"_id": order["sketch"]}, {"_id": 0, "filename": 1})
             return filename["filename"]
-        print("No orders found")
+        return False
 
     def get_file_path(self, filename):
         dir_path = "../server/sketches/"
         return f'{dir_path}' + f'{filename}'
+
+    def print_file(self, file: str) -> bool:
+        print(f"[+] Printing {file.split('/')[-1]} in progress...")  # todo remove this line
+        return True
+        # with open(file, "r") as f:
+        #     gc_list = [line.strip() for line in f.readlines()]
+        # gcode = gcoder.LightGCode(gc_list)
+        # if self.p.startprint(gcode):
+        #     print(f"[+] Printing {file.split('/')[-1]} in progress...")
+        #     return True
+        # print("[-] The printer is now busy o offline")  # this will start a print
+        # return False
+
+    def change_status_to_printing(self):
+        print("[+] Changing state to printing")
+        pass
 
     def extruder_temp(self):
         self.p.send_now("M105")  # Interact with the printer immediately
@@ -56,15 +60,20 @@ class Printer:
         filename = print_runner.get_next_order()
         if filename:
             file_path = print_runner.get_file_path(filename)
-            if os.path.exists(file_path):
-                print_runner.print_file(file_path)
+            try:
+                if os.path.exists(file_path):
+                    return print_runner.print_file(file_path)
+            except IOError:
+                print('File not found or inaccessible')
+                return False
+        return filename
 
 
 while True:
-    try:
-        print_runner = Printer('COM6', 250000)
-        print_runner.run()
-        time.sleep(10)
-    except IOError:
-        print('File not found or inaccessible')
-        time.sleep(5)
+    print_runner = Printer('COM6', 250000)
+    if print_runner.run():
+        print_runner.change_status_to_printing()
+    else:
+        print("[-] Printer is Busy or Offline")
+    time.sleep(10)
+
