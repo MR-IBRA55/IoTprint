@@ -12,13 +12,13 @@ class SketchUpload(Resource):
         requested_data = {"display_name": display_name, "filename": fullname}
         sketch_schema = SketchSchema()
         result = sketch_schema.load(requested_data)
-        SketchModel.add_sketch(**result)
+        # SketchModel.add_sketch(**result) todo Add files to Database
         FileHandler.save_file(file, fullname)
 
     def post(self):
         try:
             if "file" not in request.files or "display_name" not in request.form:
-                return {"msg": "Missing data in the request"}, 400
+                return {"msg": "Missing request data"}, 400
             file = request.files["file"]
             display_name = request.form["display_name"]
             if file.filename == "":
