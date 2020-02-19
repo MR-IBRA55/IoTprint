@@ -82,5 +82,4 @@ while True:
         print("[+] Starting printing process... ")
     else:
         print("[-] Printer is Busy or Offline")
-    time.sleep(5)
-
+    time.sleep(10)
