@@ -13,31 +13,31 @@ services:
       dockerfile: Dockerfile.dev
       context: ./server
     volumes:
-      - ./server:/usr/app
+      - ./server:/usr/server
     environment:
       - SECRET_KEY=171f8a1082a0b343cb8b0b267c8dab12
-      - UPLOAD_FOLDER=sketches
+      - ROOT_PATH=/usr/server/
       - MONGO_HOST=mongodb
       - DB=iotp
+      - UPLOAD_FOLDER=uploads
 
   client:
     build:
       dockerfile: Dockerfile.dev
       context: ./client
     volumes:
-      - ./client:/usr/app
+      - ./client:/usr/client
     environment:
-      - SECRET_KEY=171f8a1082a0b343cb8b0b267c8dab12
+      - SECRET_KEY=ad204ad0763b81b4868d832ada1b6ba2
 
-  gcapp:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./gcapp
-    volumes:
-      - ./gcapp:/usr/app
-    environment:
-      - MONGO_HOST=mongodb
-    restart: always
+#  gcapp:
+#    build:
+#      dockerfile: Dockerfile.dev
+#      context: ./gcapp
+#    volumes:
+#      - ./gcapp:/usr/gcapp
+#    environment:
+#      - MONGO_HOST=mongodb
 
   nginx:
     build:

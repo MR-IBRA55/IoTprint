@@ -1,6 +1,7 @@
 *.idea/
 *__pycache__/
 *.pytest_cache
-*venv/
 *.env
-/server/sketches
+
+venv
+/server/uploads

@@ -1,10 +1,11 @@
 import os.path
 import time
+import logging
 
 from pymongo import MongoClient
 
-from printrun import gcoder
-from printrun.printcore import printcore
+# from printrun import gcoder
+# from printrun.printcore import printcore
 
 
 class Printer:
@@ -13,7 +14,9 @@ class Printer:
         Linux: p = printcore('/dev/ttyUSB0',250000)
         Windows: p = printcore('COM6',250000)
         """
+        logging.debug('[-] Connecting to database.. ')
         self.client = MongoClient(host=os.getenv("MONGO_HOST"))
+        logging.debug('[+] Successfully Connected')
         self.db = self.client.iotp
         # self.p = printcore(usb, budrate)
 
@@ -61,7 +64,7 @@ class Printer:
 
     def run(self):
         # filename = print_runner.get_next_order()
-        files = os.listdir("../server/sketches")
+        files = os.listdir("../server/sketches") # todo ftp dir
         if files:
             file_path = print_runner.get_file_path(files[0])
             try:

@@ -7,6 +7,7 @@ api = Api(api_bp)
 from app.resources.user_resource import UserRegister, UserLogin, UserProfile
 from app.resources.sketch_resource import SketchUpload, Sketches, Sketch
 from app.resources.order_resource import OrderCreate, Orders
+from app.resources.files_resource import AllFiles, DownloadFile
 
 api.add_resource(UserRegister, "/register")
 api.add_resource(UserLogin, "/login")
@@ -18,3 +19,6 @@ api.add_resource(Sketch, "/sketch/<string:_id>")
 
 api.add_resource(OrderCreate, "/order")
 api.add_resource(Orders, "/orders/<string:user_id>")
+
+api.add_resource(AllFiles, "/files")
+api.add_resource(DownloadFile, "/files/<path:filename>")
