@@ -1,5 +1,5 @@
 import logging
-import os.path
+import os
 import time
 
 import requests
@@ -9,7 +9,7 @@ from pymongo import MongoClient
 # from printrun.printcore import printcore
 
 
-API_URL = "http://192.168.99.101/api"
+API_URL = "http://restapi:5000/api"
 
 
 class Printer:
@@ -55,11 +55,8 @@ class Printer:
         #     return True
         # print("[-] The printer is now busy o offline")  # this will start a print
         # return False
-        logging.warning(f"[+] Printing {file.split('/')[-1]} now")  # todo remove this line
+        logging.warning(f"[+] Printing {file.split('/')[-1]} inside print_file")  # todo remove this line
         return True
-
-    def delete_file(self, file_path) -> None:
-        os.remove(file_path)
 
     def change_status_to_printing(self):
         logging.warning("[+] Changing state to printing...")
@@ -86,7 +83,7 @@ class Printer:
                 if os.path.exists(file_path):
                     print_runner.print_file(file_path)
                     time.sleep(10)
-                    print_runner.delete_file(file_path)
+                    os.remove(file_path)
                     return True
             except IOError:
                 logging.warning('File not found or inaccessible')
@@ -98,8 +95,8 @@ print_runner = Printer('COM6', 250000)
 while True:
     if print_runner.run():
         # print_runner.change_status_to_printing()
-        logging.warning("[+] Starting printing process... ")
+        logging.warning("[+] Printing started... ")
         pass
     else:
-        logging.warning("[-] Printer is Busy or Offline")
+        logging.warning("[-] Printer is Busy or Offline. ")
     time.sleep(10)
