@@ -12,7 +12,7 @@ class SketchUpload(Resource):
         requested_data = {"display_name": display_name, "filename": fullname}
         sketch_schema = SketchSchema()
         result = sketch_schema.load(requested_data)
-        # SketchModel.add_sketch(**result) todo Add files to Database
+        SketchModel.add_sketch(**result)
         FileHandler.save_file(file, fullname)
 
     def post(self):

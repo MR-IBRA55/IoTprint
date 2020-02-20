@@ -1,4 +1,3 @@
-import logging
 import os
 
 from config import Configs
@@ -16,7 +15,6 @@ class AllFiles(Resource):
             path = os.path.join(UPLOAD_FOLDER, filename)
             if os.path.isfile(path):
                 files.append(filename)
-        logging.warning(os.getcwd())
         return jsonify(files)  # return JSON file names
 
 

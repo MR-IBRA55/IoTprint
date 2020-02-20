@@ -8,7 +8,7 @@ services:
   redis:
     image: 'redis'
 
-  api:
+  restapi:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
@@ -30,14 +30,14 @@ services:
     environment:
       - SECRET_KEY=ad204ad0763b81b4868d832ada1b6ba2
 
-#  gcapp:
-#    build:
-#      dockerfile: Dockerfile.dev
-#      context: ./gcapp
-#    volumes:
-#      - ./gcapp:/usr/gcapp
-#    environment:
-#      - MONGO_HOST=mongodb
+  gcapp:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./gcapp
+    volumes:
+      - ./gcapp:/usr/gcapp
+    environment:
+      - MONGO_HOST=mongodb
 
   nginx:
     build:

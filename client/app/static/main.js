@@ -33,7 +33,7 @@ function uploadFile(e) {
   formData.append("display_name", displayName.value);
   formData.append("file", fileInput.files[0], "/D:/NEW/USB/Sketches/box.gcode");
   
-  xhr.open('POST', 'http://127.0.0.1:5000/api/upload', true);
+  xhr.open('POST', 'http://192.168.99.101/api/upload', true);
 
   xhr.onload = function () {
     console.log(JSON.parse(this.response));
