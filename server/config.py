@@ -12,4 +12,4 @@ class Configs(object):
     MONGODB_SETTINGS = {
         "db": os.getenv("DB"),
         "host": os.getenv("MONGO_HOST"),
-    }
+        }

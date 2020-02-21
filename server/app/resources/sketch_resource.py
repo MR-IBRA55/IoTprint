@@ -17,8 +17,9 @@ class SketchUpload(Resource):
 
     def post(self):
         try:
-            if "file" not in request.files or "display_name" not in request.form:
-                return {"msg": "Missing data in the request"}, 400
+            # if "file" not in request.files or "display_name" not in request.form:
+            if "display_name" not in request.form:
+                return {"msg": "Missing display_name"}, 400
             file = request.files["file"]
             display_name = request.form["display_name"]
             if file.filename == "":

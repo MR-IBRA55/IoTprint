@@ -1,7 +1,7 @@
 # User an existing docker image as base
 FROM python
 # Specify work dir path inside the container
-WORKDIR /usr/app
+WORKDIR /usr/server
 # Copy then Download and install depndancies
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
