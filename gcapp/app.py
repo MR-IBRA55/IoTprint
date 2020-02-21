@@ -24,9 +24,10 @@ class Printer:
         logging.warning('[+] Successfully Connected to database')
         # self.p = printcore(usb, budrate)
 
-    def get_next_order(self) -> [str, bool]:
+    def get_first_order(self) -> [str, bool]:
         order = self.db.orders.find_one({"status": "standby"}, {"_id": 0, "sketch": 1})
         if order:
+            logging.warning("[+] Found an order to print...  ")
             filename = self.db.sketches.find_one({"_id": order["sketch"]}, {"_id": 0, "filename": 1})
             return filename["filename"]
         return False
@@ -58,9 +59,9 @@ class Printer:
         logging.warning(f"[+] Printing {file.split('/')[-1]} inside print_file")  # todo remove this line
         return True
 
-    def change_status_to_printing(self):
+    def change_order_status_to_printing(self):
         logging.warning("[+] Changing state to printing...")
-        pass  # todo Update query to change the Status
+        self.db.orders.update_one({"status": "standby"}, {"$set": {"status": "printing"}})
 
     # def extruder_temp(self):
     #     self.p.send_now("M105")  # Interact with the printer immediately
@@ -75,17 +76,17 @@ class Printer:
     #     self.p.disconnect()  # disconnect and stop running prints
 
     def run(self):
-        filename = print_runner.get_next_order()
+        filename = print_runner.get_first_order()
         # filename = print_runner.get_sketch()
         if filename:
             file_path = print_runner.get_file_path(filename)
             try:
                 if os.path.exists(file_path):
                     print_runner.print_file(file_path)
-                    print_runner.change_status_to_printing()
+                    print_runner.change_order_status_to_printing()
                     return True
             except IOError:
-                logging.warning('File not found or inaccessible')
+                logging.warning('[-] File not found or inaccessible')
                 return False
         return False
 
@@ -95,5 +96,5 @@ while True:
     if print_runner.run():
         pass
     else:
-        logging.warning("[-] Printer is Busy or Offline. ")
+        logging.critical("[-] Printer is Busy or Offline. ")
     time.sleep(10)
