@@ -20,23 +20,23 @@ class Printer:
         """
         logging.warning(f"[-] Connecting to database... ")
         self.client = MongoClient(host=os.getenv('MONGO_HOST'))
-        logging.warning('[+] Successfully Connected to database')
         self.db = self.client.iotp
+        logging.warning('[+] Successfully Connected to database')
         # self.p = printcore(usb, budrate)
 
-    # def get_next_order(self) -> [str, bool]:
-    #     order = self.db.orders.find_one({"status": "standby"}, {"_id": 0, "sketch": 1})
-    #     if order:
-    #         filename = self.db.sketches.find_one({"_id": order["sketch"]}, {"_id": 0, "filename": 1})
-    #         return filename["filename"]
-    #     return False
-
-    def get_sketch(self):
-        order = self.db.sketches.find_one()
+    def get_next_order(self) -> [str, bool]:
+        order = self.db.orders.find_one({"status": "standby"}, {"_id": 0, "sketch": 1})
         if order:
-            filename = self.db.sketches.find_one({}, {"_id": 0, "filename": 1})
+            filename = self.db.sketches.find_one({"_id": order["sketch"]}, {"_id": 0, "filename": 1})
             return filename["filename"]
         return False
+
+    # def get_sketch(self):
+    #     order = self.db.sketches.find_one()
+    #     if order:
+    #         filename = self.db.sketches.find_one({}, {"_id": 0, "filename": 1})
+    #         return filename["filename"]
+    #     return False
 
     def get_file_path(self, filename):
         response = requests.get(f'{API_URL}/files/{filename}')
@@ -60,7 +60,7 @@ class Printer:
 
     def change_status_to_printing(self):
         logging.warning("[+] Changing state to printing...")
-        pass
+        pass  # todo Update query to change the Status
 
     # def extruder_temp(self):
     #     self.p.send_now("M105")  # Interact with the printer immediately
@@ -75,15 +75,14 @@ class Printer:
     #     self.p.disconnect()  # disconnect and stop running prints
 
     def run(self):
-        # filename = print_runner.get_next_order()
-        filename = print_runner.get_sketch()
+        filename = print_runner.get_next_order()
+        # filename = print_runner.get_sketch()
         if filename:
             file_path = print_runner.get_file_path(filename)
             try:
                 if os.path.exists(file_path):
                     print_runner.print_file(file_path)
-                    time.sleep(10)
-                    os.remove(file_path)
+                    print_runner.change_status_to_printing()
                     return True
             except IOError:
                 logging.warning('File not found or inaccessible')
@@ -94,8 +93,6 @@ class Printer:
 print_runner = Printer('COM6', 250000)
 while True:
     if print_runner.run():
-        # print_runner.change_status_to_printing()
-        logging.warning("[+] Printing started... ")
         pass
     else:
         logging.warning("[-] Printer is Busy or Offline. ")
