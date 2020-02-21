@@ -29,6 +29,7 @@ services:
       - ./client:/usr/client
     environment:
       - SECRET_KEY=ad204ad0763b81b4868d832ada1b6ba2
+      - ROOT_PATH=/usr/client
 
   gcapp:
     build:

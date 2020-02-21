@@ -1,7 +1,7 @@
 import os
 
 from config import Configs
-from flask import jsonify, send_from_directory, send_file
+from flask import jsonify, send_from_directory
 from flask_restful import Resource
 
 UPLOAD_FOLDER = Configs.UPLOAD_FOLDER
@@ -9,7 +9,7 @@ UPLOAD_FOLDER = Configs.UPLOAD_FOLDER
 
 class AllFiles(Resource):
     def get(self):
-        """List files on the server."""
+        """List file names on the server as JSON"""
         files = []
         for filename in os.listdir(UPLOAD_FOLDER):
             path = os.path.join(UPLOAD_FOLDER, filename)
