@@ -31,14 +31,14 @@ services:
       - SECRET_KEY=ad204ad0763b81b4868d832ada1b6ba2
       - ROOT_PATH=/usr/client
 
-  gcapp:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./gcapp
-    volumes:
-      - ./gcapp:/usr/gcapp
-    environment:
-      - MONGO_HOST=mongodb
+#  gcapp:
+#    build:
+#      dockerfile: Dockerfile.dev
+#      context: ./gcapp
+#    volumes:
+#      - ./gcapp:/usr/gcapp
+#    environment:
+#      - MONGO_HOST=mongodb
 
   nginx:
     build:
