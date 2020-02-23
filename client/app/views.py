@@ -10,5 +10,5 @@ def home():
 
 
 @website_bp.route("/workspace")
-def register():
+def workspace():
     return render_template("workspace.html")
