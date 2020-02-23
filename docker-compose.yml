@@ -44,9 +44,5 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./nginx
-    restart: always
-    depends_on:
-      - client
-      - restapi
     ports:
       - "80:80"

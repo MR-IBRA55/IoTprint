@@ -4,9 +4,10 @@ from marshmallow import ValidationError
 
 from app.models.user_model import UserModel
 from app.schemas import UserSchema
+from secrets import compare_digest
 
 
-class UserRegister(Resource):
+class UserSignUp(Resource):
     def post(self):
         try:
             requested_data = request.get_json()
@@ -27,7 +28,7 @@ class UserLogin(Resource):
         requested_data = request.get_json()
         user = UserModel.get_user_by_username(requested_data["username"])
         if user:
-            if requested_data["password"] == user.password:
+            if compare_digest(requested_data["password"], user.password):
                 return {"msg": "Login successful"}, 200
             else:
                 return {"msg": "Bad username or password"}, 400

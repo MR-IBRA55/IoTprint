@@ -1,20 +1,200 @@
 body {
-  font-family: 'lato', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  background-color: #f4f4f4;
 }
 
-page-container {
-  position: relative;
-  min-height: 100vh;
+
+/* Global */
+.Container {
+  width: 70%; /* Responsive width */
+  margin: auto; /* Move to the middle */
+  overflow: hidden; /* When gets out of its div no scroll bar*/
 }
 
-content-wrap {
-  padding-bottom: 2.5rem;    /* Footer height */
+ul {
+  padding: 0;
+  margin: 0;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
+
+/* Header */
+header {
+  background: #32353C;
+  color: #ffffff;
+  padding-top: 30px;
+  min-height: 70px;
+  border-bottom: #66CDAA 3px solid;
+}
+
+header a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+header li {
+  display: inline;
+  padding: 0 10px 0 10px;
+}
+
+header #branding {
+  float: left;
+}
+
+header  h1{
+  color: #66CDAA;
+  margin: 0;
+  font-weight: bold;
+}
+
+header nav {
+  float: right;
+  margin-top: 10px;
+}
+
+header a:hover {
+  color: #66CDAA;
+}
+
+/* Input Login */
+.InputLogin {
+  padding: 5px;
+  height: 30px;
+  width: 250px;
+  border-radius: 3%;
+}
+
+/* Button Login*/
+.BtnLogin {
+  height: 40px;
+  background-color: #66CDAA;
+  color: black;
+  font-size: 20px;
+  border: none;
+  padding: 0 20px 4px 20px; /* Top Right Bottom Left */
+}
+
+
+/* Section Welcome */
+ #welcome {
+  min-height: 700px;
+}
+
+/* Aside Left*/
+#asideLeft{
+  min-height: 700px;
+  float: left;
+  width: 70%;
+  background: url('../img/printer.jpg') no-repeat;
+  text-align: center;
+  color: #ffffff;
+}
+
+#asideLeft h1 {
+  margin-top: 100px;
+  font-size: 55px;
+}
+
+#asideLeft p {
+  font-size: 30px;
+}
+
+/* Aside Right */
+#asideRight {
+  float: right;
+  width: 30%;
+  min-height: 700px;
+  background-color: #32353C;
+  color: #ffffff;
+}
+
+#asideRight h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: #66CDAA;
+}
+
+#asideRight li {
+  padding: 10px;
+  font-size: 20px;
+  color: #66CDAA;
+}
+
+/* Input Sign Up*/
+.InputSignUp {
+  padding: 5px;
+  height: 30px;
   width: 100%;
-  height: 2.5rem;            /* Footer height */
+  border-radius: 3%;
 }
 
+/* Button Submit */
+.BtnSignUp {
+  height: 40px;
+  background-color: #66CDAA;
+  color: black;
+  font-size: 20px;
+  border: none;
+  padding: 0 20px 0 20px; /* Top Right Bottom Left */
+}
+
+
+/* Article Started */
+#started {
+  padding: 10px;
+  text-align: center;
+  background-color: #32353C;
+  color: #66CDAA;
+  border-top: #66CDAA 3px solid;
+}
+
+/*Button print*/
+.BtnPrint {
+  height: 50px;
+  width: 100%;
+  background-color: #66CDAA;
+  color: black;
+  border: none;
+  font-size: 20px;
+  padding: 0 20px 0 20px; /* Top Right Bottom Left */
+}
+
+
+/* Boxes */
+
+#boxes {
+  margin-top: 20px;
+}
+
+#boxes .Box {
+  background: #f4f4f4;
+  float: left;
+  text-align: left;
+  width: 30%;
+  margin: 10px;
+  border: grey 3px solid;
+}
+
+#boxes .Box h3, p {
+  padding-left: 10px;
+}
+
+#boxes .Box img {
+  width: 100%;
+}
+
+
+/* Footer */
+footer {
+  padding: 5px;
+  margin-top: 20px;
+  color: #66CDAA;
+  background-color: #32353C;
+  text-align: center;
+}

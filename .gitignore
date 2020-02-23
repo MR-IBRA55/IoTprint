@@ -4,5 +4,6 @@
 *.env
 
 venv
+*.vscode
 /server/uploads
 /gcapp/downloads

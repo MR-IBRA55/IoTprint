@@ -6,9 +6,9 @@ class UserModel(Document):
     _id = ObjectIdField(primary_key=True, default=ObjectId)
     first_name = StringField(max_length=20)
     last_name = StringField(max_length=20)
-    email = EmailField(required=True, unique=True)
     username = StringField(required=True, unique=True)
     password = StringField(required=True)
+    email = EmailField(required=True, unique=True)
     meta = {"collection": "users"}
 
     @classmethod

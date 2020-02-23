@@ -6,9 +6,9 @@ class UserSchema(Schema):
     _id = fields.Str()
     first_name = fields.Str()
     last_name = fields.Str()
-    email = fields.Email()
     username = fields.Str(validate=validate.Length(min=4, max=24))
     password = fields.Str(validate=validate.Length(min=6))
+    email = fields.Email()
 
 
 class SketchSchema(Schema):

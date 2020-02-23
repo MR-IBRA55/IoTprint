@@ -2,73 +2,120 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>{{ title }}</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-  {% block styles %}{% endblock styles %}
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Captain IR">
+  <title>IoTprint | Home</title>
+  <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
-  <div id="page-container">
-    <div id="content-wrap">
-      <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="#">IoTprint</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      {% block content %}{% endblock content %}
-
-    </div>
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  <!-- Header -->
+  <header>
+    <!-- Container -->
+    <div class="Container">
+      <div id="branding">
+        <h1>IoTprint</h1>
       </div>
-      <!-- /.container -->
-    </footer>
-  </div>
+      <!-- Navigation Bar -->
 
-  <!-- Bootstrap core JS -->
-  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <nav>
+        <form id="loginForm">
+          <ul>
+            <li>
+              <input class="InputLogin" type="text" name="username" placeholder="Username">
+            </li>
+            <li>
+              <input class="InputLogin" type="password" name="password" placeholder="Password">
+            </li>
+            <li>
+              <button class="BtnLogin" type="submit">Login</button>
+            </li>
+          </ul>
+        </form>
+      </nav> <!-- /Navigation Bar -->
+    </div> <!-- /Container -->
+  </header> <!-- /Header -->
 
-  <!-- Custom scripts for this template -->
-  {% block script %}{% endblock script %}
+
+  <!-- Section -->
+  <section id="welcome">
+    <!-- Aside Left-->
+    <aside id="asideLeft">
+      <!-- Show Case-->
+      <h1>Welcome to IoTprint</h1>
+      <p>Sign Up or Login to start printing now</p>
+    </aside> <!-- /Aside Left-->
+
+    <!-- Aside Right-->
+    <aside id="asideRight">
+      <div class="Container">
+        <h1>Sign Up</h1>
+        <form id="signUpForm">
+          <ul>
+            <li>
+              <label for="">Firstname</label><br>
+              <input class="InputSignUp" type="text" name="firstname" id="firstname">
+            </li>
+            <li>
+              <label for="">Lastname</label><br>
+              <input class="InputSignUp" type="text" name="lastname" id="lastname">
+            </li>
+            <li>
+              <label for="">Username</label><br>
+              <input class="InputSignUp" type="text" name="username" id="username">
+            </li>
+            <li>
+              <label for="">Password</label><br>
+              <input class="InputSignUp" type="password" name="password" id="password">
+            </li>
+            <li>
+              <label for="">Email</label><br>
+              <input class="InputSignUp" type="email" name="email" id="email">
+            </li>
+            <li>
+              <button class="BtnSignUp" type="submit">Sign Up</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </aside> <!-- /Aside Right-->
+  </section>
+
+  <!-- Article -->
+  <article id="started">
+    <div class="Container">
+      <h1>Get started with the Test Models</h1>
+    </div>
+  </article> <!-- /Article -->
+
+  <!-- Section-->
+  <section id="boxes">
+    <div class="Container">
+      <div class="Box">
+        <img src="../static/img/cube.jpg" alt="">
+        <h3>XYZ Cube</h3>
+        <p>This is a nice Box</p>
+        <button class="BtnPrint" type="button">Print Now</button>
+      </div>
+      <div class="Box">
+        <img src="../static/img/pyramid.jpg" alt="">
+        <h3>Pyramid</h3>
+        <p>This is a nice Pyramid</p>
+        <button class="BtnPrint" type="button">Print Now</button>
+      </div>
+      <div class="Box">
+        <img src="../static/img/ship.jpg" alt="">
+        <h3>Ship</h3>
+        <p>This is a nice Ship</p>
+        <button class="BtnPrint" type="button">Print Now</button>
+      </div>
+    </div>
+  </section> <!-- /Section-->
+
+  <footer id="footer">
+    <p>IoTprint, Copyright &copy; 2020</p>
+  </footer>
 </body>
 
 </html>
