@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workspace</title>
+  <meta name="author" content="Captain IR">
+  <title>IoTprint | Home</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/workspace.css">
 </head>
+
 <body>
-  
+  <!-- Header -->
+  <header>
+    <div class="Container">
+      <div id="branding">
+        <h1>IoTprint</h1>
+      </div>
+      <!-- Navigation Bar -->
+      <nav>
+        <form id="loginForm">
+          <ul>
+            <li>
+              <button id="btnLogout" class="BtnLogout" type="submit">Logout</button>
+            </li>
+          </ul>
+        </form>
+      </nav> <!-- /Navigation Bar -->
+    </div>
+  </header> <!-- /Header -->
+
+  <section id="content">
+    <div class="Container">
+      <!-- Aside button list -->
+      <aside id="asideButtons">
+        <ul>
+          <li><button class="Buttons" type="button">Test Models</button></li>
+          <li><button class="Buttons" type="button">My Files</button></li>
+          <li><button class="Buttons" type="button">Orders</button></li>
+          <li><button class="Buttons" type="button">Upload</button></li>
+        </ul>
+      </aside> <!-- /Aside button list -->
+
+      <aside id="asideDynamic">
+        <!-- Aside Dynamic -->
+        <!-- Dynamic Content -->
+        {% block content %}{% endblock content %}
+      </aside> <!-- /Aside dynamic -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <p>IoTprint, Copyright &copy; 2020</p>
+  </footer> <!-- /Footer -->
+
+  <script src="../static/js/workspace.js"></script>
 </body>
+
 </html>

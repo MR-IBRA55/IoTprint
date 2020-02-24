@@ -2,8 +2,9 @@
 *__pycache__/
 *.pytest_cache
 *.env
+*.vscode
 
 venv
-*.vscode
+data
 /server/uploads
 /gcapp/downloads

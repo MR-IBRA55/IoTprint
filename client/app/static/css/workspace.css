@@ -1,0 +1,25 @@
+/* Section Content */
+#content {
+  padding-top: 20px;
+}
+/* Aside Buttons */
+#asideButtons {
+  float: left;
+  background-color: antiquewhite;
+  min-height: 750px;
+  width: 15%;
+}
+/* Aside Dynamic */
+#asideDynamic {
+  float: right;
+  background-color: grey;
+  min-height: 750px;
+  width: 80%;
+}
+
+
+
+.Buttons  {
+  width: 100%;
+  padding: 30px;
+}
