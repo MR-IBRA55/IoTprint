@@ -8,6 +8,10 @@
   <title>IoTprint | Home</title>
   <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="../static/css/workspace.css">
+  <link rel="stylesheet" href="../static/css/models.css">
+  <link rel="stylesheet" href="../static/css/myFiles.css">
+  <link rel="stylesheet" href="../static/css/orders.css">
+  <link rel="stylesheet" href="../static/css/upload.css">
 </head>
 
 <body>
@@ -35,17 +39,16 @@
       <!-- Aside button list -->
       <aside id="asideButtons">
         <ul>
-          <li><button class="Buttons" type="button">Test Models</button></li>
-          <li><button class="Buttons" type="button">My Files</button></li>
-          <li><button class="Buttons" type="button">Orders</button></li>
-          <li><button class="Buttons" type="button">Upload</button></li>
+          <li><button id="btnModelsPage" class="Buttons" type="button">Test Models</button></li>
+          <li><button id="btnFilesPage" class="Buttons" type="button">My Files</button></li>
+          <li><button id="btnOrdersPage" class="Buttons" type="button">Orders</button></li>
+          <li><button id="btnUploadPage" class="Buttons" type="button">Upload</button></li>
         </ul>
       </aside> <!-- /Aside button list -->
 
       <aside id="asideDynamic">
         <!-- Aside Dynamic -->
         <!-- Dynamic Content -->
-        {% block content %}{% endblock content %}
       </aside> <!-- /Aside dynamic -->
     </div>
   </section>
@@ -56,6 +59,10 @@
   </footer> <!-- /Footer -->
 
   <script src="../static/js/workspace.js"></script>
+  <script src="../static/js/models.js"></script>
+  <script src="../static/js/myFiles.js"></script>
+  <script src="../static/js/orders.js"></script>
+  <script src="../static/js/upload.js"></script>
 </body>
 
 </html>

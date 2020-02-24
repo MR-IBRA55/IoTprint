@@ -1,0 +1,31 @@
+#modelsTable {
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: black 2px solid;
+}
+
+#modelsTable:hover {
+  background-color: #ddd;
+}
+
+#modelsTable th {
+  border-collapse: collapse;
+  padding: 0;
+  width: 0;  
+}
+
+#modelsTable th img{
+  display: block;
+  width: 300px;
+}
+
+#modelsTable td {
+  text-align: right;
+}
+
+#modelsTable .textModels{
+  text-align: left;
+  vertical-align: top;
+  font-weight: bold;
+  font-size: 25px;
+}

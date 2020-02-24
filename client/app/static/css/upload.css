@@ -1,0 +1,22 @@
+#uploadForm {
+  width: 100%;
+}
+
+#uploadForm label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#uploadForm input {
+  font-size: 20px;
+}
+
+#uploadForm #inpDisplayName{
+  width: 80%;
+  height: 30px;
+  margin: 10px 0 10px 0;
+}
+
+#uploadForm #inpFile {
+  margin: 10px 0 10px 0;
+}
