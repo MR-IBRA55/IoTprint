@@ -1,24 +1,24 @@
-#myFilesTable {
+.myFilesTable {
   background-color: #f4f4f4;
   border-bottom: #66CDAA 1px solid;
   width: 100%;
   padding: 10px 0 10px 0;
 }
 
-#myFilesTable:hover {
+.myFilesTable:hover {
   background-color: #ddd;
 }
 
-#myFilesTable th{
+.myFilesTable th{
   padding: 0;
   text-align: left;
 }
 
-#myFilesTable td{
+.myFilesTable td{
   padding: 0;
   text-align: right;
 }
 
-#myFilesTable td button {
+.myFilesTable td button {
   padding: 10px;
 }

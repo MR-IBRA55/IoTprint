@@ -1,12 +1,11 @@
 from typing import List
 
-from flask import request
-from flask_restful import Resource
-
 from app.models.orders_model import OrderModel
 from app.models.sketch_model import SketchModel
 from app.models.user_model import UserModel
 from app.schemas import OrderSchema
+from flask import request
+from flask_restful import Resource
 
 
 class OrderCreate(Resource):
@@ -23,11 +22,21 @@ class OrderCreate(Resource):
 
 
 class Orders(Resource):
-    def get(self, user_id):
+    def get(self):
+        orders: List[OrderModel] = OrderModel.get_all_orders()
+        if orders:
+            schema = OrderSchema(many=True)
+            result: dict = schema.dump(orders)
+            return result, 200
+        return {"msg": "No orders found"}, 404
+
+
+class Order(Resource):
+    def get(self, user_id: str):
         user = UserModel.get_user_by_id(user_id)
         if user:
             schema = OrderSchema(many=True)
             orders: List[OrderModel] = OrderModel.get_orders_by_user(user)
             result = schema.dump(orders)
             return result, 200
-        return {"msg": "Bad request"}, 400
+        return {"msg": "No user found"}, 404

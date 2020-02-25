@@ -1,4 +1,3 @@
-from datetime import datetime
 from typing import List
 
 from bson import ObjectId
@@ -9,7 +8,6 @@ class SketchModel(Document):
     _id = ObjectIdField(primary_key=True, default=ObjectId)
     display_name = StringField(required=True, max_length=32)
     filename = StringField(required=True)
-    date = DateTimeField(required=True, default=datetime.utcnow)
     meta = {"collection": "sketches"}
 
     @classmethod

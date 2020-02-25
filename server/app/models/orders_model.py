@@ -28,8 +28,9 @@ class OrderModel(Document):
         return orders
 
     @classmethod
-    def get_first_order(cls, date):
-        pass
+    def get_all_orders(cls) -> "List[OrderModel]":
+        orders = OrderModel.objects().exclude('user')
+        return orders
 
     @classmethod
     def change_status(cls):

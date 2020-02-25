@@ -15,12 +15,11 @@ class SketchSchema(Schema):
     _id = fields.Str()
     display_name = fields.Str(validate=validate.Length(min=3, max=24))
     filename = fields.Str()
-    date = fields.DateTime()
 
 
 class OrderSchema(Schema):
-    _id = fields.Str(load_only=True)
-    user = fields.Nested(UserSchema, only=("username",))
-    sketch = fields.Nested(SketchSchema, only=("display_name",))
+    _id = fields.Str()
+    # user = fields.Nested(UserSchema)
+    sketch = fields.Nested(SketchSchema)
     date = fields.DateTime()
     status = fields.Str()

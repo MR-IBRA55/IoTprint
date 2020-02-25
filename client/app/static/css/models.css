@@ -1,20 +1,20 @@
-#modelsTable {
+.modelsTable {
   border-collapse: collapse;
   width: 100%;
   border-bottom: black 2px solid;
 }
 
-#modelsTable:hover {
+.modelsTable:hover {
   background-color: #ddd;
 }
 
-#modelsTable th {
+.modelsTable th {
   border-collapse: collapse;
   padding: 0;
   width: 0;  
 }
 
-#modelsTable th img{
+.modelsTable th img{
   display: block;
   width: 300px;
 }
@@ -23,7 +23,7 @@
   text-align: right;
 }
 
-#modelsTable .textModels{
+.modelsTable .textModels{
   text-align: left;
   vertical-align: top;
   font-weight: bold;
