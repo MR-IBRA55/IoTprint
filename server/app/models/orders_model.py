@@ -14,7 +14,7 @@ class OrderModel(Document):
     sketch = ReferenceField(SketchModel)
     date = DateTimeField(default=datetime.utcnow)
     status = StringField(
-        default="standby", choices=("standby", "printing", "finished"), required=True
+        default="Standby", choices=("Standby", "Printing", "Finished"), required=True
         )
     meta = {"collection": "orders", "ordering": ["-date"]}
 

@@ -11,6 +11,10 @@
   font-size: 20px;
 }
 
+#uploadForm button {
+  padding: 20px;
+}
+
 #uploadForm #inpDisplayName{
   width: 80%;
   height: 30px;

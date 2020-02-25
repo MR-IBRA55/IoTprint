@@ -10,8 +10,9 @@ from flask_restful import Resource
 
 class OrderCreate(Resource):
     def post(self):
+        headers = request.headers
         requested_data = request.get_json()
-        user = UserModel.get_user_by_id(requested_data["user"])
+        user = UserModel.get_user_by_id(headers["User"])
         if user:
             sketch = SketchModel.get_sketch_by_id(requested_data["sketch"])
             if sketch:

@@ -1,10 +1,10 @@
-.ordersTable {
+.OrdersTable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-.ordersTable th {
+.OrdersTable th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -12,9 +12,9 @@
   color: white;
 }
 
-.ordersTable th, .ordersTable td {
+.OrdersTable th, .OrdersTable td {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.ordersTable tr:hover {background-color: #ddd;}
+.OrdersTable tr:hover {background-color: #ddd;}

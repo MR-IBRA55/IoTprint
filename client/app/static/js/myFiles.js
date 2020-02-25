@@ -1,11 +1,8 @@
-class MyFiles {
-  constructor(endPoint) {
-    this.endPoint = endPoint
-  }
-
-  fetchData() {
+function fetchSketches() {
+  const btnFilesPage = document.getElementById('btnFilesPage');
+  btnFilesPage.addEventListener('click', function () {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', `http://${document.domain}/api/${this.endPoint}`, true);
+    xhr.open('GET', `http://${document.domain}/api/sketches`, true);
 
     xhr.onload = function () {
       if (this.status == 200) {
@@ -14,25 +11,30 @@ class MyFiles {
         for (var sketch in sketches) {
           output +=
             `
-            <table class="myFilesTable">
-              <tr>
-                <th>${sketches[sketch].display_name}</th>
-                <td><button class="btnOrderNow" type="button">Order</button></td>
-              </tr>
-            </table>
-          `
+              <table id=${sketches[sketch]._id} class="myFilesTable">
+                <tr>
+                  <th>${sketches[sketch].display_name}</th>
+                  <td><button class="btnOrderNow" type="button">Order</button></td>
+                </tr>
+              </table>
+            `
           const asideDynamic = document.getElementById('asideDynamic');
           asideDynamic.innerHTML = output
         }
+      } else {
+        alert(JSON.parse(this.response).msg)
       }
     }
     xhr.send();
-  }
+    orderNow();
+  })
+
 }
 
-const btnFilesPage = document.getElementById('btnFilesPage');
-const myFiles = new MyFiles('sketches')
+function orderNow() {
 
-btnFilesPage.addEventListener('click', function () {
-  myFiles.fetchData()
-})
+}
+
+
+fetchSketches();
+
